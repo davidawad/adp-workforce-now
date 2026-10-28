@@ -1,0 +1,11 @@
+.venv/
+dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.pem
+*.key
+*.p12
+*.pfx
+.env

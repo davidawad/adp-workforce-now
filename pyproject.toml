@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling>=1.33.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "adp-workforce-now"
+version = "0.1.0"
+description = "A typed, read-first Python client for the ADP Workforce Now APIs (API Central / ADP Marketplace): mutual TLS, OAuth2 client credentials, paging, retries."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "David Awad" }]
+requires-python = ">=3.11"
+keywords = ["adp", "workforce-now", "hr", "payroll", "oauth2", "mtls", "api-client"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Libraries",
+  "Typing :: Typed",
+]
+dependencies = [
+  "authlib>=1.9.1,<2",
+  "httpx2>=2.16.0,<3",
+  "anyio>=4.10",
+  "cryptography>=50.0.2",
+]
+
+[project.urls]
+Documentation = "https://developers.adp.com/"
+
+[dependency-groups]
+dev = ["pytest>=9.2.0", "pytest-asyncio>=1.0", "ruff>=0.17.3", "twine>=7.0.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/adp_workforce_now"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "README.md", "CHANGELOG.md", "LICENSE", "justfile"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+filterwarnings = ["error"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
